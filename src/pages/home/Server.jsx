@@ -59,7 +59,14 @@ const Server = () => {
       }
       const json = await response.json();
       console.log('Received backup data:', json);
-      setBackups(json.data || []);
+      // Filter out GET files and only show backup files
+      const filteredBackups = (json.data || []).filter(backup => 
+        backup.format === 'raw' || 
+        backup.format === 'vma' ||
+        backup.format === 'vma.lzo' ||
+        backup.format === 'vma.zst'
+      );
+      setBackups(filteredBackups);
     } catch (err) {
       console.error('Error fetching backups:', err);
       setBackupError(`Failed to fetch backups: ${err.message}`);
