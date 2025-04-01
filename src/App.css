@@ -1,0 +1,19 @@
+body{
+  background: rgba(115, 236, 252, 0.233);
+}
+
+/* Flex container for sticky footer layout */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}

@@ -1,0 +1,155 @@
+/* General Card Layout */
+.card-container {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(17, 24, 39, 0.85));
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    color: #f8fafc;
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+  
+  /* Title */
+  .card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+  
+  /* Search Bar */
+  .search-input {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-top: 1.2rem;
+    width: 100%;
+    max-width: 450px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+    outline: none;
+  }
+  
+  /* Zones List Styling */
+  .zones-container {
+    overflow-x: auto;
+    padding: 1.5rem 0;
+  }
+  
+  .zones-container table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+  }
+  
+  .one-zones-container {
+    background-color: #334155;
+    color: #e2e8f0;
+    border-radius: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+  
+  .one-zones-container:hover {
+    background-color: #3b475a;
+    transform: translateY(-3px);
+  }
+  
+  .zones-container td {
+    padding: 1.2rem;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Records List Styling */
+  .records-container {
+    overflow-x: auto;
+    padding: 1.5rem 0;
+  }
+  
+  .records-container table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+  }
+  
+  .records-container th {
+    background-color: #1e293b;
+    color: #f8fafc;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 1.2rem;
+    border-radius: 8px;
+  }
+  
+  .one-record-container {
+    background-color: #334155;
+    color: #e2e8f0;
+    border-radius: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .one-record-container:hover {
+    background-color: #3b475a;
+    transform: scale(1.02);
+  }
+  
+  .records-container td {
+    padding: 1.2rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 320px;
+  }
+  
+  /* Editable Input */
+  input[type="text"] {
+    width: 100%;
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+    outline: none;
+  }
+  
+  /* Spinner */
+  .spinner-border {
+    color: #3b82f6;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .card-title {
+      font-size: 1.4rem;
+    }
+    .search-input {
+      width: 100%;
+    }
+    .zones-container table,
+    .records-container table {
+      min-width: 100%;
+    }
+    .zones-container td,
+    .records-container td {
+      font-size: 0.85rem;
+    }
+  }
+  

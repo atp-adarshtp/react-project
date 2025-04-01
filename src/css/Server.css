@@ -1,0 +1,522 @@
+/* Modern Enterprise Server Dashboard */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #60a5fa;
+  --success-color: #059669;
+  --success-light: #34d399;
+  --danger-color: #dc2626;
+  --danger-light: #ef4444;
+  --warning-color: #d97706;
+  --warning-light: #fbbf24;
+  --info-color: #0891b2;
+  --info-light: #22d3ee;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --max-width: 1200px;
+  --card-width: 100%;
+}
+
+/* Container and Layout */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  background: var(--bg-primary);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  width: var(--card-width);
+  max-width: 100%;
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* Table Styling */
+.table {
+  margin: 0;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.table thead th {
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  position: relative;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.table tbody td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+
+/* Node Row Styling */
+.table tbody tr {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.table tbody tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+.selected-node {
+  background-color: var(--bg-secondary) !important;
+  border-left: 4px solid var(--primary-color);
+}
+
+.selected-node td {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Status Badge Styling */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  justify-content: flex-start;
+}
+
+.status-badge::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-badge.running {
+  background-color: rgba(5, 150, 105, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.status-badge.running::before {
+  background-color: var(--success-color);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+.status-badge.stopped {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.status-badge.stopped::before {
+  background-color: var(--danger-color);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+.status-badge.unknown {
+  background-color: rgba(100, 116, 139, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.status-badge.unknown::before {
+  background-color: var(--text-secondary);
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.2);
+}
+
+/* Status Action Button */
+.status-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.5rem;
+  border: none;
+  gap: 0.375rem;
+}
+
+.status-action.start {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.status-action.start:hover {
+  background-color: var(--success-light);
+  transform: translateY(-1px);
+}
+
+.status-action.shutdown {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.status-action.shutdown:hover {
+  background-color: var(--danger-light);
+  transform: translateY(-1px);
+}
+
+.status-action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Status Container */
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* VM ID Styling */
+.vm-id {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-family: 'SF Mono', 'Consolas', monospace;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.vm-name-text {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+/* Loading Spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Alert Styling */
+.alert {
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.alert-danger {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.alert-danger::before {
+  background-color: var(--danger-color);
+}
+
+.alert-info {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--primary-color);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.alert-info::before {
+  background-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-header {
+    padding: 1.25rem;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .table thead th,
+  .table tbody td {
+    padding: 0.75rem 1rem;
+  }
+  
+  .status-badge {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    min-width: 90px;
+  }
+  
+  .vm-id {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    min-width: 90px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Tooltip */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.375rem 0.75rem;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+[data-tooltip]:hover:before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Backup Styles */
+.backup-volid {
+  font-weight: 500;
+  color: var(--primary-color);
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.backup-notes {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.backup-format {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.backup-size {
+  font-family: monospace;
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.backup-encrypted {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.backup-encrypted.encrypted {
+  background-color: rgba(5, 150, 105, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.backup-encrypted.unencrypted {
+  background-color: rgba(100, 116, 139, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.backup-verify-state {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.backup-verify-state.verified {
+  background-color: rgba(5, 150, 105, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.backup-verify-state.failed {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.backup-verify-state.unknown {
+  background-color: rgba(100, 116, 139, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.backup-date {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+/* Table Improvements for Backups */
+.table tbody tr:hover {
+  background-color: var(--hover-bg);
+}
+
+.table tbody tr:hover .backup-volid {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: var(--primary-dark);
+} 
